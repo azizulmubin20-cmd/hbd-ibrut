@@ -2,6 +2,9 @@
 
 Website statis yang responsif untuk HP dan laptop. Tidak membutuhkan server atau database.
 
+## Foto yang sudah disimpan
+Enam foto yang dikirim Bobi sudah dimasukkan ke folder `photos/` dan dipasang di galeri website. Saat mengunggah website, unggah folder `photos/` juga agar foto tampil untuk semua orang.
+
 ## Cara melihat
 1. Ekstrak ZIP.
 2. Buka `index.html` di browser (Chrome/Edge).
