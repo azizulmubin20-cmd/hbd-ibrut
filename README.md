@@ -1,33 +1,39 @@
-# Website Ulang Tahun Ibrut — dari Bobi ♡
+# For Ibrut ♡ — Happy Birthday
 
-Website statis yang responsif untuk HP dan laptop. Tidak membutuhkan server atau database.
+Website ulang tahun interaktif dari Bobi untuk Ibrut. Dibuat dengan HTML, CSS, dan JavaScript biasa; tidak membutuhkan framework atau database.
 
-## Foto yang sudah disimpan
-Enam foto yang dikirim Bobi sudah dimasukkan ke folder `photos/` dan dipasang di galeri website. Saat mengunggah website, unggah folder `photos/` juga agar foto tampil untuk semua orang.
+## Yang ada di website
 
-## Cara melihat
-1. Ekstrak ZIP.
-2. Buka `index.html` di browser (Chrome/Edge).
-3. Ketuk tombol untuk surat, pilih foto, mainkan musik, dan interaksi kue.
+- Layar pembuka dengan amplop animasi yang bisa dibuka.
+- Hero romantis, ornamen bergerak, dan transisi scroll.
+- Surat ulang tahun personal dari Bobi.
+- Galeri enam foto, dengan opsi menambahkan foto sementara di browser.
+- Kue interaktif: nyalakan lilin, buat permintaan, lalu tiup lilinnya.
+- Efek confetti, hati yang muncul saat layar disentuh, dan tombol musik mengambang.
+- Responsif untuk HP dan desktop.
+- Musik lokal: `assets/music/beranjak-dewasa.mp3` (Beranjak Dewasa — Nadin Amizah), dari file yang diberikan pengguna.
 
-## Cara menambahkan foto supaya ikut tampil ketika link dibagikan
-Pemilih foto di website hanya menampilkan foto sementara di browser yang sedang dipakai. Agar foto permanen dan terlihat oleh semua orang:
-1. Letakkan foto pilihanmu ke folder `photos/`.
-2. Buka `index.html`, cari bagian galeri yang berisi kartu foto placeholder.
-3. Untuk mengganti placeholder, ubah isi `<div class="photo-frame">...` menjadi `<div class="photo-frame"><img src="photos/nama-foto.jpg" alt="Foto Ibrut"></div>`.
-4. Ubah `nama-foto.jpg` sesuai nama file yang benar. Kamu bisa duplikasi satu blok `<div class="photo-card"...>` untuk menambah foto.
-5. Simpan dan upload seluruh folder, termasuk `photos/`, ke layanan hosting.
+## Cara melihat website
 
-## Publikasi gratis dengan GitHub Pages
-1. Buat akun atau masuk ke https://github.com/
-2. Buat repository baru, misalnya `birthday-ibrut`. Untuk paling mudah, pilih **Public**.
-3. Unggah `index.html` dan folder `photos/` (jika sudah ada foto). Pastikan `index.html` berada di root repository.
-4. Buka **Settings → Pages**.
-5. Pada **Build and deployment**, pilih **Deploy from a branch**, pilih branch `main` dan folder `/(root)`, lalu tekan **Save**.
-6. Tunggu proses publikasi. GitHub akan menampilkan URL website di halaman Pages, biasanya `https://USERNAME.github.io/birthday-ibrut/`.
-7. Buka link itu di HP untuk mengetes, lalu kirim ke Ibrut lewat WhatsApp.
+1. Ekstrak ZIP ini.
+2. Buka `index.html` di browser.
+3. Tekan **Buka kejutan ini** untuk memulai.
+4. Tekan tombol musik jika lagu belum mulai. Browser biasanya membatasi autoplay audio sebelum ada interaksi.
 
-## Catatan
-- Musik dibuat dengan Web Audio di browser, jadi tidak perlu mengunggah lagu. Pengguna perlu mengetuk tombol musik agar browser mengizinkan audio.
-- Foto yang dipilih lewat tombol di website tidak otomatis terunggah ke internet; tambahkan foto ke folder `photos/` untuk membuatnya permanen.
-- Jangan mengunggah foto pribadi yang tidak mendapat izin.
+Foto dan file musik sudah berada di folder `assets/`. Internet hanya dibutuhkan untuk memuat font Google. Browser mungkin memblokir autoplay audio; bila lagu belum mulai, tekan tombol musik.
+
+## Mengedit website
+
+- Ucapan, bagian halaman, dan susunan foto: `index.html`.
+- Desain dan animasi: `css/style.css`.
+- Interaksi dan musik: `js/script.js`.
+- Foto: folder `assets/images/`.
+
+## Deploy gratis dengan GitHub Pages
+
+Upload isi folder project ke repository GitHub. Lalu buka **Settings → Pages**, pilih **Deploy from a branch**, pilih branch `main` dan folder `/ (root)`, kemudian simpan. Setelah proses deploy selesai, GitHub akan menampilkan alamat website.
+
+Catatan: foto tambahan yang dipilih melalui tombol galeri hanya ditampilkan di sesi browser saat itu; agar permanen dan terlihat oleh pengunjung lain, tambahkan file ke `assets/images/` dan edit `index.html`. Project ini sudah disiapkan, tetapi belum diunggah atau dipublikasikan ke GitHub Pages.
+
+
+Catatan musik: website mencoba memutar lagu otomatis ketika dibuka. Browser dapat memblokir autoplay bersuara; jika itu terjadi, tekan tombol musik ♫ di pojok kanan bawah atau tombol lagu di bagian bawah halaman. Foto dan ucapan tampil langsung tanpa perlu membuka amplop.
