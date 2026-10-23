@@ -2,902 +2,989 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff8fb8">
-  <title>Happy Birthday, Ibrut! 💗</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --pink: #ff8fb8;
-      --pink-dark: #f45b98;
-      --pink-light: #ffe3ee;
-      --cream: #fff8fb;
-      --text: #754358;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 20px;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      font-family: 'Nunito', sans-serif;
-      color: var(--text);
-      background: linear-gradient(
-        135deg,
-        #fff1f7,
-        #ffd8e8,
-        #fff7fb,
-        #ffc8df
-      );
-      background-size: 300% 300%;
-      animation: backgroundMove 14s ease infinite;
-    }
-
-    button {
-      font: inherit;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button:focus-visible {
-      outline: 3px solid #b83270;
-      outline-offset: 4px;
-    }
-
-    .particles {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .particle {
-      position: absolute;
-      bottom: -40px;
-      opacity: 0;
-      animation: floatUp linear infinite;
-      user-select: none;
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      padding: 24px 16px 40px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding: clamp(28px, 6vw, 58px) 20px;
-      background: rgba(255, 255, 255, 0.78);
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      border-radius: 30px;
-      box-shadow: 0 16px 50px rgba(216, 94, 145, 0.15);
-      animation: appear 1s ease both;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 16px;
-      margin-bottom: 20px;
-      color: #c34c81;
-      background: #ffe1ed;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.2rem, 8vw, 5rem);
-      line-height: 1.2;
-      overflow-wrap: anywhere;
-      color: var(--pink-dark);
-      text-shadow: 2px 4px 0 #ffe1ed;
-    }
-
-    .script {
-      margin-top: 8px;
-      color: #d94e8c;
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(1.8rem, 6vw, 3rem);
-    }
-
-    .subtitle {
-      max-width: 520px;
-      margin: 18px auto 0;
-      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-      line-height: 1.8;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .btn {
-      min-height: 46px;
-      max-width: 100%;
-      padding: 12px 22px;
-      border: 0;
-      border-radius: 999px;
-      color: white;
-      background: linear-gradient(135deg, #ff9fc4, #f15c98);
-      box-shadow: 0 6px 18px rgba(241, 92, 152, 0.25);
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 9px 22px rgba(241, 92, 152, 0.3);
-    }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
-    .btn.secondary {
-      color: #c34c81;
-      background: #fff;
-      border: 1px solid #ffc2da;
-      box-shadow: none;
-    }
-
-    .section {
-      margin-top: 28px;
-      padding: clamp(22px, 5vw, 36px);
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      border-radius: 26px;
-      box-shadow: 0 12px 35px rgba(216, 94, 145, 0.1);
-      animation: appear 0.8s ease both;
-    }
-
-    .section-title {
-      margin-bottom: 10px;
-      color: var(--pink-dark);
-      text-align: center;
-      font-size: clamp(1.5rem, 5vw, 2.2rem);
-      overflow-wrap: anywhere;
-    }
-
-    .section-description {
-      margin-bottom: 24px;
-      text-align: center;
-      line-height: 1.8;
-      font-size: 0.98rem;
-    }
-
-    /* Ilustrasi kue ulang tahun */
-    .cake-stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 250px;
-      padding: 16px;
-      overflow: hidden;
-    }
-
-    .cake {
-      position: relative;
-      width: min(260px, 75vw);
-      height: 205px;
-      animation: cakeBounce 3s ease-in-out infinite;
-    }
-
-    .plate {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 100%;
-      height: 18px;
-      transform: translateX(-50%);
-      background: #f4a7c4;
-      border: 4px solid white;
-      border-radius: 50%;
-      box-shadow: 0 8px 18px rgba(188, 76, 122, 0.12);
-    }
-
-    .cake-bottom {
-      position: absolute;
-      bottom: 12px;
-      left: 8%;
-      width: 84%;
-      height: 75px;
-      background: linear-gradient(90deg, #f4a1c2, #ffd0e1, #f4a1c2);
-      border: 3px solid #fff;
-      border-radius: 12px 12px 18px 18px;
-      box-shadow: inset 0 -10px 0 rgba(235, 113, 165, 0.18);
-    }
-
-    .cake-bottom::before {
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: 0;
-      width: 100%;
-      height: 12px;
-      background: #fff4f8;
-      border-radius: 5px;
-    }
-
-    .cake-top {
-      position: absolute;
-      bottom: 82px;
-      left: 16%;
-      width: 68%;
-      height: 65px;
-      background: linear-gradient(90deg, #ffb9d3, #ffe2ed, #ffb9d3);
-      border: 3px solid #fff;
-      border-radius: 12px 12px 8px 8px;
-      box-shadow: inset 0 -8px 0 rgba(235, 113, 165, 0.15);
-    }
-
-    .icing {
-      position: absolute;
-      top: -3px;
-      left: -2px;
-      width: calc(100% + 4px);
-      height: 19px;
-      background: #fff8fb;
-      border-radius: 10px 10px 8px 8px;
-    }
-
-    .icing::before,
-    .icing::after {
-      content: "";
-      position: absolute;
-      top: 9px;
-      width: 12px;
-      height: 18px;
-      background: #fff8fb;
-      border-radius: 0 0 10px 10px;
-    }
-
-    .icing::before {
-      left: 25%;
-    }
-
-    .icing::after {
-      right: 25%;
-      height: 13px;
-    }
-
-    .cherry {
-      position: absolute;
-      top: -17px;
-      left: 50%;
-      width: 17px;
-      height: 17px;
-      transform: translateX(-50%);
-      background: #f45b98;
-      border-radius: 50%;
-      box-shadow: -36px 12px 0 -3px #f45b98,
-                  36px 12px 0 -3px #f45b98;
-    }
-
-    .candle {
-      position: absolute;
-      z-index: 2;
-      bottom: 145px;
-      left: 50%;
-      width: 12px;
-      height: 36px;
-      transform: translateX(-50%);
-      border-radius: 4px 4px 2px 2px;
-      background: repeating-linear-gradient(
-        135deg,
-        #fff 0 5px,
-        #ff83b3 5px 10px
-      );
-    }
-
-    .flame {
-      position: absolute;
-      left: 50%;
-      top: -24px;
-      width: 16px;
-      height: 23px;
-      transform: translateX(-50%);
-      transform-origin: bottom;
-      border-radius: 50% 50% 45% 45%;
-      background: linear-gradient(#fff5a7, #ff9c44, #ff6a91);
-      box-shadow: 0 0 18px rgba(255, 173, 75, 0.7);
-      animation: flicker 0.8s ease-in-out infinite alternate;
-    }
-
-    .cake-heart {
-      position: absolute;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #ec649d;
-      font-size: 23px;
-    }
-
-    .cake-caption {
-      margin-top: 8px;
-      color: #d94e8c;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    /* Galeri foto */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .photo {
-      position: relative;
-      overflow: hidden;
-      padding: 6px;
-      background: white;
-      border-radius: 17px;
-      box-shadow: 0 5px 16px rgba(180, 80, 125, 0.12);
-      cursor: pointer;
-      transition: transform 0.25s;
-    }
-
-    .photo:hover {
-      transform: translateY(-5px) rotate(-1deg);
-    }
-
-    .photo img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 12px;
-      background: #ffe5ef;
-    }
-
-    .photo-label {
-      padding: 9px 3px 5px;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    /* Pesan */
-    .letter {
-      position: relative;
-      padding: clamp(20px, 5vw, 34px);
-      background: #fff5f9;
-      border: 2px dashed #ffb5d1;
-      border-radius: 20px;
-      text-align: center;
-      line-height: 1.9;
-    }
-
-    .letter p + p {
-      margin-top: 14px;
-    }
-
-    .secret {
-      display: none;
-      margin-top: 18px;
-      padding: 18px;
-      color: #b83e77;
-      background: white;
-      border-radius: 15px;
-      animation: appear 0.5s ease both;
-    }
-
-    .secret.show {
-      display: block;
-    }
-
-    .footer {
-      padding: 28px 12px 4px;
-      color: #a45a7a;
-      text-align: center;
-      line-height: 1.8;
-      font-size: 0.9rem;
-    }
-
-    /* Pembesar foto */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(68, 30, 49, 0.85);
-    }
-
-    .lightbox.show {
-      display: flex;
-    }
-
-    .lightbox img {
-      display: block;
-      max-width: 100%;
-      max-height: 82vh;
-      object-fit: contain;
-      border: 5px solid white;
-      border-radius: 15px;
-      animation: appear 0.25s ease;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      width: 46px;
-      height: 46px;
-      border: 0;
-      border-radius: 50%;
-      color: #b83e77;
-      background: white;
-      font-size: 1.6rem;
-      cursor: pointer;
-    }
-
-    /* Responsif tablet */
-    @media (max-width: 768px) {
-      .page {
-        padding: 16px 12px 30px;
-      }
-
-      .hero {
-        border-radius: 24px;
-      }
-
-      .section {
-        margin-top: 18px;
-        border-radius: 22px;
-      }
-
-      .gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .cake-stage {
-        min-height: 230px;
-      }
-    }
-
-    /* Responsif HP */
-    @media (max-width: 480px) {
-      .page {
-        padding: 10px 10px 24px;
-      }
-
-      .hero {
-        padding: 34px 16px;
-        border-radius: 22px;
-      }
-
-      .eyebrow {
-        font-size: 0.75rem;
-        letter-spacing: 0.5px;
-      }
-
-      .subtitle {
-        line-height: 1.75;
-      }
-
-      .hero-buttons {
-        gap: 10px;
-      }
-
-      .btn {
-        width: 100%;
-        padding: 12px 16px;
-      }
-
-      .section {
-        margin-top: 15px;
-        padding: 22px 15px;
-        border-radius: 20px;
-      }
-
-      .gallery {
-        gap: 9px;
-      }
-
-      .photo {
-        padding: 4px;
-        border-radius: 13px;
-      }
-
-      .photo img {
-        border-radius: 9px;
-      }
-
-      .photo-label {
-        font-size: 0.78rem;
-      }
-
-      .cake-stage {
-        min-height: 220px;
-      }
-
-      .cake {
-        transform: scale(0.9);
-      }
-    }
-
-    @media (max-width: 350px) {
-      .hero {
-        padding: 28px 12px;
-      }
-
-      .section {
-        padding: 19px 11px;
-      }
-
-      .gallery {
-        gap: 7px;
-      }
-
-      .cake {
-        transform: scale(0.8);
-      }
-    }
-
-    /* Kurangi animasi bila diminta perangkat */
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    @keyframes backgroundMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% { opacity: 0.75; }
-      90% { opacity: 0.65; }
-      100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes cakeBounce {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -7px; }
-    }
-
-    @keyframes flicker {
-      from { transform: translateX(-50%) rotate(-5deg) scale(1); }
-      to { transform: translateX(-50%) rotate(5deg) scale(1.08); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffb6d2">
+<title>Happy Birthday Ibrut 💗</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff8fb8;
+  --pink-dark: #e94f91;
+  --pink-light: #ffe3ee;
+  --text: #754358;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #fff1f7, #ffd8e8, #fff7fb, #ffc8df);
+  background-size: 300% 300%;
+  animation: backgroundMove 14s ease infinite;
+}
+
+button {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid #b83270;
+  outline-offset: 4px;
+}
+
+/* ===== HALAMAN PEMBUKA HADIAH ===== */
+
+.gift-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px 16px;
+  background:
+    radial-gradient(circle at 15% 20%, #ffffff 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 25%, #ffffff 0 2px, transparent 3px),
+    radial-gradient(circle at 25% 80%, #ffffff 0 2px, transparent 3px),
+    linear-gradient(135deg, #ffe8f1, #ffb6d2, #ffddec);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.gift-screen.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.gift-content {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  animation: giftAppear 1s ease both;
+}
+
+.gift-sparkle {
+  margin-bottom: 18px;
+  color: #e64f91;
+  font-size: 2rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.gift-subtitle {
+  color: #b74778;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.gift-content h1 {
+  margin-top: 12px;
+  color: var(--pink-dark);
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2rem, 8vw, 3rem);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.gift-text {
+  margin-top: 12px;
+  line-height: 1.8;
+}
+
+.gift-box {
+  position: relative;
+  display: block;
+  width: 180px;
+  height: 155px;
+  margin: 65px auto 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  animation: giftFloat 2s ease-in-out infinite;
+}
+
+.gift-lid {
+  position: absolute;
+  z-index: 3;
+  top: 28px;
+  left: -9px;
+  width: 198px;
+  height: 28px;
+  border: 3px solid white;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff6fa5, #ffa4c7, #ff6fa5);
+  transition: transform 0.7s ease;
+}
+
+.gift-ribbon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 180px;
+  height: 110px;
+  border: 3px solid white;
+  border-radius: 9px 9px 15px 15px;
+  background: linear-gradient(90deg, #ff80b2, #ffb1d0, #ff80b2);
+  box-shadow: 0 12px 25px #d9578a40;
+}
+
+.gift-ribbon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 28px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: #fff0f6;
+}
+
+.gift-bow {
+  position: absolute;
+  z-index: 4;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3.2rem;
+  transition: transform 0.7s ease;
+}
+
+.gift-heart {
+  position: absolute;
+  z-index: 5;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 2rem;
+}
+
+.gift-hint {
+  color: #b74778;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  animation: hintPulse 1.5s ease-in-out infinite;
+}
+
+.gift-screen.opening .gift-lid {
+  transform: translate(-12px, -48px) rotate(-18deg);
+}
+
+.gift-screen.opening .gift-bow {
+  transform: translate(-50%, -50px) rotate(-20deg);
+}
+
+.gift-screen.opening .gift-box {
+  animation: giftPop 0.7s ease forwards;
+}
+
+/* ===== PARTIKEL ===== */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  bottom: -40px;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  user-select: none;
+}
+
+/* ===== LAYOUT UTAMA ===== */
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 24px 16px 40px;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  padding: clamp(28px, 6vw, 58px) 20px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: 0 16px 50px #d85e9126;
+  animation: appear 1s ease both;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 20px;
+  color: #c34c81;
+  background: #ffe1ed;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  color: var(--pink-dark);
+  font-size: clamp(2.2rem, 8vw, 5rem);
+  line-height: 1.2;
+  text-shadow: 2px 4px 0 #ffe1ed;
+}
+
+.script {
+  margin-top: 8px;
+  color: #d94e8c;
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+}
+
+.subtitle {
+  max-width: 520px;
+  margin: 18px auto 0;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.btn {
+  min-height: 46px;
+  max-width: 100%;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: linear-gradient(135deg, #ff9fc4, #f15c98);
+  box-shadow: 0 6px 18px #f15c9840;
+  font-weight: 800;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px #f15c984d;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn.secondary {
+  color: #c34c81;
+  background: white;
+  border: 1px solid #ffc2da;
+  box-shadow: none;
+}
+
+.section {
+  margin-top: 28px;
+  padding: clamp(22px, 5vw, 36px);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid white;
+  border-radius: 26px;
+  box-shadow: 0 12px 35px #d85e911a;
+  animation: appear 0.8s ease both;
+}
+
+.section-title {
+  margin-bottom: 10px;
+  color: var(--pink-dark);
+  text-align: center;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+}
+
+.section-description {
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ===== KUE ULANG TAHUN ===== */
+
+.cake-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.cake {
+  position: relative;
+  width: 260px;
+  max-width: 75vw;
+  height: 205px;
+  animation: cakeBounce 3s ease-in-out infinite;
+}
+
+.plate {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 18px;
+  transform: translateX(-50%);
+  background: #f4a7c4;
+  border: 4px solid white;
+  border-radius: 50%;
+}
+
+.cake-bottom {
+  position: absolute;
+  bottom: 12px;
+  left: 8%;
+  width: 84%;
+  height: 75px;
+  background: linear-gradient(90deg, #f4a1c2, #ffd0e1, #f4a1c2);
+  border: 3px solid white;
+  border-radius: 12px 12px 18px 18px;
+  box-shadow: inset 0 -10px 0 #eb71a529;
+}
+
+.cake-bottom::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: #fff4f8;
+  border-radius: 5px;
+}
+
+.cake-top {
+  position: absolute;
+  bottom: 82px;
+  left: 16%;
+  width: 68%;
+  height: 65px;
+  background: linear-gradient(90deg, #ffb9d3, #ffe2ed, #ffb9d3);
+  border: 3px solid white;
+  border-radius: 12px 12px 8px 8px;
+}
+
+.icing {
+  position: absolute;
+  top: -3px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: 19px;
+  background: #fff8fb;
+  border-radius: 10px 10px 8px 8px;
+}
+
+.icing::before,
+.icing::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  width: 12px;
+  height: 18px;
+  background: #fff8fb;
+  border-radius: 0 0 10px 10px;
+}
+
+.icing::before { left: 25%; }
+.icing::after { right: 25%; height: 13px; }
+
+.cherry {
+  position: absolute;
+  top: -17px;
+  left: 50%;
+  width: 17px;
+  height: 17px;
+  transform: translateX(-50%);
+  background: #f45b98;
+  border-radius: 50%;
+  box-shadow: -36px 12px 0 -3px #f45b98,
+              36px 12px 0 -3px #f45b98;
+}
+
+.candle {
+  position: absolute;
+  z-index: 2;
+  bottom: 145px;
+  left: 50%;
+  width: 12px;
+  height: 36px;
+  transform: translateX(-50%);
+  border-radius: 4px 4px 2px 2px;
+  background: repeating-linear-gradient(135deg, white 0 5px, #ff83b3 5px 10px);
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -24px;
+  width: 16px;
+  height: 23px;
+  transform: translateX(-50%);
+  transform-origin: bottom;
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(#fff5a7, #ff9c44, #ff6a91);
+  box-shadow: 0 0 18px #ffad4bb3;
+  animation: flicker 0.8s ease-in-out infinite alternate;
+}
+
+.cake-heart {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ec649d;
+  font-size: 23px;
+}
+
+.cake-caption {
+  margin-top: 8px;
+  color: #d94e8c;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* ===== GALERI FOTO ===== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.photo {
+  overflow: hidden;
+  padding: 6px;
+  background: white;
+  border-radius: 17px;
+  box-shadow: 0 5px 16px #b4507d1f;
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+.photo:hover {
+  transform: translateY(-5px) rotate(-1deg);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #ffe5ef;
+}
+
+.photo-label {
+  padding: 9px 3px 5px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+/* ===== SURAT DAN PESAN RAHASIA ===== */
+
+.letter {
+  padding: clamp(20px, 5vw, 34px);
+  background: #fff5f9;
+  border: 2px dashed #ffb5d1;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 1.9;
+}
+
+.letter p + p {
+  margin-top: 14px;
+}
+
+.secret {
+  display: none;
+  margin-top: 18px;
+  padding: 18px;
+  color: #b83e77;
+  background: white;
+  border-radius: 15px;
+  animation: appear 0.5s ease both;
+}
+
+.secret.show {
+  display: block;
+}
+
+.footer {
+  padding: 28px 12px 4px;
+  color: #a45a7a;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 0.9rem;
+}
+
+/* ===== LIGHTBOX FOTO ===== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #441e31dc;
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  border: 5px solid white;
+  border-radius: 15px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  color: #b83e77;
+  background: white;
+  font-size: 1.6rem;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .page { padding: 16px 12px 30px; }
+  .hero { border-radius: 24px; }
+  .section { margin-top: 18px; border-radius: 22px; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .cake-stage { min-height: 230px; }
+}
+
+@media (max-width: 480px) {
+  .page { padding: 10px 10px 24px; }
+  .hero { padding: 34px 16px; border-radius: 22px; }
+  .gift-box { margin-top: 55px; }
+  .section { margin-top: 15px; padding: 22px 15px; border-radius: 20px; }
+  .hero-buttons { gap: 10px; }
+  .hero-buttons .btn { width: 100%; }
+  .gallery { gap: 9px; }
+  .photo { padding: 4px; border-radius: 13px; }
+  .photo img { border-radius: 9px; }
+  .photo-label { font-size: 0.78rem; }
+  .cake-stage { min-height: 220px; }
+  .cake { transform: scale(0.9); }
+}
+
+@media (max-width: 350px) {
+  .hero { padding: 28px 12px; }
+  .section { padding: 19px 11px; }
+  .gallery { gap: 7px; }
+  .cake { transform: scale(0.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== ANIMASI ===== */
+
+@keyframes backgroundMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  10% { opacity: 0.75; }
+  90% { opacity: 0.65; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes giftFloat {
+  0%, 100% { translate: 0 0; rotate: -2deg; }
+  50% { translate: 0 -10px; rotate: 2deg; }
+}
+
+@keyframes giftPop {
+  0% { scale: 1; }
+  50% { scale: 1.12; }
+  100% { scale: 0.9; opacity: 0; }
+}
+
+@keyframes giftAppear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes cakeBounce {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+
+@keyframes flicker {
+  from { transform: translateX(-50%) rotate(-5deg) scale(1); }
+  to { transform: translateX(-50%) rotate(5deg) scale(1.08); }
+}
+</style>
 </head>
 
 <body>
-  <div class="particles" id="particles" aria-hidden="true"></div>
 
-  <main class="page">
-    <div class="container">
+<!-- HALAMAN PERTAMA: HADIAH -->
+<div class="gift-screen" id="giftScreen">
+  <div class="gift-content">
+    <div class="gift-sparkle">✦ ♡ ✦</div>
+    <p class="gift-subtitle">SOMETHING SPECIAL FOR YOU</p>
+    <h1>A Gift For Ibrut 💗</h1>
+    <p class="gift-text">Ada kejutan kecil yang menunggumu...</p>
 
-      <!-- Pembuka -->
-      <section class="hero">
-        <div class="eyebrow">♡ A SPECIAL DAY FOR SOMEONE SPECIAL ♡</div>
+    <button class="gift-box" id="giftButton" aria-label="Buka hadiah">
+      <span class="gift-lid"></span>
+      <span class="gift-ribbon"></span>
+      <span class="gift-bow">🎀</span>
+      <span class="gift-heart">♥</span>
+    </button>
 
-        <h1>Happy Birthday!</h1>
-        <div class="script">Ibrut 💗</div>
-
-        <p class="subtitle">
-          Hari ini bukan hari biasa, karena seseorang yang istimewa
-          sedang bertambah usia. Semoga hari ini dipenuhi senyum,
-          kebahagiaan, dan banyak hal baik.
-        </p>
-
-        <div class="hero-buttons">
-          <button class="btn" id="openButton">
-            Buka Kejutan 💌
-          </button>
-          <button class="btn secondary" id="musicButton">
-            ♫ Putar Musik
-          </button>
-        </div>
-
-        <audio id="birthdayMusic" loop preload="none">
-          <source src="assets/music/beranjak-dewasa.mp3" type="audio/mpeg">
-          Browser kamu tidak mendukung audio.
-        </audio>
-      </section>
-
-      <!-- Kue ulang tahun -->
-      <section class="section" id="cakeSection">
-        <h2 class="section-title">A Little Cake for You 🎂</h2>
-        <p class="section-description">
-          Jangan lupa buat permohonan terbaikmu hari ini.
-        </p>
-
-        <div class="cake-stage">
-          <div class="cake" role="img" aria-label="Ilustrasi kue ulang tahun pink">
-            <div class="plate"></div>
-            <div class="cake-bottom"></div>
-
-            <div class="cake-top">
-              <div class="icing"></div>
-              <div class="cherry"></div>
-              <div class="cake-heart">♥</div>
-            </div>
-
-            <div class="candle">
-              <div class="flame"></div>
-            </div>
-          </div>
-        </div>
-
-        <p class="cake-caption">Make a wish, Ibrut! ✨</p>
-      </section>
-
-      <!-- Galeri -->
-      <section class="section" id="gallerySection">
-        <h2 class="section-title">Our Little Memories 📸</h2>
-        <p class="section-description">
-          Beberapa kenangan manis yang layak disimpan.
-          Tekan fotonya untuk melihat lebih besar.
-        </p>
-
-        <div class="gallery">
-          <div class="photo" tabindex="0" role="button" aria-label="Lihat foto 1">
-            <img src="assets/images/ibrut-1.jpeg" alt="Kenangan Ibrut 1" loading="lazy">
-            <div class="photo-label">Sweet Memory 💗</div>
-          </div>
-
-          <div class="photo" tabindex="0" role="button" aria-label="Lihat foto 2">
-            <img src="assets/images/ibrut-2.jpg" alt="Kenangan Ibrut 2" loading="lazy">
-            <div class="photo-label">Little Happiness 🌷</div>
-          </div>
-
-          <div class="photo" tabindex="0" role="button" aria-label="Lihat foto 3">
-            <img src="assets/images/ibrut-3.jpg" alt="Kenangan Ibrut 3" loading="lazy">
-            <div class="photo-label">Lovely Days 🩷</div>
-          </div>
-
-          <div class="photo" tabindex="0" role="button" aria-label="Lihat foto 4">
-            <img src="assets/images/ibrut-4.jpg" alt="Kenangan Ibrut 4" loading="lazy">
-            <div class="photo-label">Precious Moments 🌸</div>
-          </div>
-
-          <div class="photo" tabindex="0" role="button" aria-label="Lihat foto 5">
-            <img src="assets/images/ibrut-5.jpg" alt="Kenangan Ibrut 5" loading="lazy">
-            <div class="photo-label">Forever Cute 🎀</div>
-          </div>
-
-          <div class="photo" tabindex="0" role="button" aria-label="Lihat foto 6">
-            <img src="assets/images/ibrut-6.jpg" alt="Kenangan Ibrut 6" loading="lazy">
-            <div class="photo-label">For You, Ibrut 💕</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Surat ulang tahun -->
-      <section class="section" id="letterSection">
-        <h2 class="section-title">A Letter for You 💌</h2>
-        <p class="section-description">
-          Ada sedikit ucapan yang ingin disampaikan.
-        </p>
-
-        <div class="letter">
-          <p>Dear Ibrut, 💗</p>
-
-          <p>
-            Selamat ulang tahun, yaa! Semoga di usia yang baru ini,
-            kamu selalu diberi kesehatan, kebahagiaan, dan hati yang
-            tenang. Semoga semua hal yang sedang kamu perjuangkan
-            perlahan menemukan jalannya.
-          </p>
-
-          <p>
-            Semoga kamu selalu dikelilingi orang-orang yang tulus,
-            punya banyak alasan untuk tersenyum, dan tidak lupa
-            menyayangi dirimu sendiri.
-          </p>
-
-          <p>With lots of love, ♡</p>
-
-          <button class="btn" id="secretButton" style="margin-top: 22px;">
-            Buka Pesan Rahasia 💝
-          </button>
-
-          <div class="secret" id="secretMessage">
-            <p><strong>One more thing, Ibrut... 💗</strong></p>
-            <p>
-              Kamu pantas mendapatkan hal-hal baik, bukan cuma hari ini,
-              tapi juga di hari-hari berikutnya. Tetap jadi dirimu sendiri,
-              tetap bersinar, dan jangan pernah merasa sendirian.
-            </p>
-            <p>Happy birthday, you deserve all the love! 🌷✨</p>
-          </div>
-        </div>
-      </section>
-
-      <footer class="footer">
-        Made with ♡ just for Ibrut
-        <br>
-        Semoga harimu semanis kue ulang tahun ini 🎂
-      </footer>
-
-    </div>
-  </main>
-
-  <!-- Tampilan foto besar -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ukuran besar">
-    <button class="lightbox-close" id="closeLightbox" aria-label="Tutup foto">×</button>
-    <img id="lightboxImage" src="" alt="Foto kenangan ukuran besar">
+    <p class="gift-hint" id="giftHint">♡ TAP TO OPEN ♡</p>
   </div>
+</div>
 
-  <script>
-    const music = document.getElementById('birthdayMusic');
-    const musicButton = document.getElementById('musicButton');
-    const openButton = document.getElementById('openButton');
-    const secretButton = document.getElementById('secretButton');
-    const secretMessage = document.getElementById('secretMessage');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const closeLightbox = document.getElementById('closeLightbox');
+<div class="particles" id="particles" aria-hidden="true"></div>
 
-    // Membuat partikel hati dan bintang
-    const particlesContainer = document.getElementById('particles');
-    const particleSymbols = ['♡', '♥', '✦', '✨', '💕'];
+<main class="page">
+<div class="container">
 
-    for (let i = 0; i < 24; i++) {
-      const particle = document.createElement('span');
-      particle.className = 'particle';
-      particle.textContent =
-        particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
+  <!-- PEMBUKA ULANG TAHUN -->
+  <section class="hero">
+    <div class="eyebrow">♡ A SPECIAL DAY FOR SOMEONE SPECIAL ♡</div>
+    <h1>Happy Birthday!</h1>
+    <div class="script">Ibrut 💗</div>
 
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.fontSize = (12 + Math.random() * 20) + 'px';
-      particle.style.animationDuration = (9 + Math.random() * 13) + 's';
-      particle.style.animationDelay = (-Math.random() * 20) + 's';
+    <p class="subtitle">
+      Hari ini bukan hari biasa, karena seseorang yang istimewa
+      sedang bertambah usia. Semoga hari ini dipenuhi senyum,
+      kebahagiaan, dan banyak hal baik.
+    </p>
 
-      particlesContainer.appendChild(particle);
+    <div class="hero-buttons">
+      <button class="btn" id="openButton">Buka Kejutan 💌</button>
+      <button class="btn secondary" id="musicButton">♫ Putar Musik</button>
+    </div>
+
+    <audio id="birthdayMusic" loop preload="none">
+      <source src="assets/music/beranjak-dewasa.mp3" type="audio/mpeg">
+    </audio>
+  </section>
+
+  <!-- KUE -->
+  <section class="section" id="cakeSection">
+    <h2 class="section-title">A Little Cake for You 🎂</h2>
+    <p class="section-description">
+      Jangan lupa buat permohonan terbaikmu hari ini.
+    </p>
+
+    <div class="cake-stage">
+      <div class="cake" role="img" aria-label="Kue ulang tahun pink">
+        <div class="plate"></div>
+        <div class="cake-bottom"></div>
+        <div class="cake-top">
+          <div class="icing"></div>
+          <div class="cherry"></div>
+          <div class="cake-heart">♥</div>
+        </div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+
+    <p class="cake-caption">Make a wish, Ibrut! ✨</p>
+  </section>
+
+  <!-- GALERI -->
+  <section class="section" id="gallerySection">
+    <h2 class="section-title">Our Little Memories 📸</h2>
+    <p class="section-description">
+      Beberapa kenangan manis yang layak disimpan.
+      Tekan fotonya untuk melihat lebih besar.
+    </p>
+
+    <div class="gallery">
+      <div class="photo" tabindex="0" role="button">
+        <img src="assets/images/ibrut-1.jpeg" alt="Kenangan Ibrut 1" loading="lazy">
+        <div class="photo-label">Sweet Memory 💗</div>
+      </div>
+      <div class="photo" tabindex="0" role="button">
+        <img src="assets/images/ibrut-2.jpg" alt="Kenangan Ibrut 2" loading="lazy">
+        <div class="photo-label">Little Happiness 🌷</div>
+      </div>
+      <div class="photo" tabindex="0" role="button">
+        <img src="assets/images/ibrut-3.jpg" alt="Kenangan Ibrut 3" loading="lazy">
+        <div class="photo-label">Lovely Days 🩷</div>
+      </div>
+      <div class="photo" tabindex="0" role="button">
+        <img src="assets/images/ibrut-4.jpg" alt="Kenangan Ibrut 4" loading="lazy">
+        <div class="photo-label">Precious Moments 🌸</div>
+      </div>
+      <div class="photo" tabindex="0" role="button">
+        <img src="assets/images/ibrut-5.jpg" alt="Kenangan Ibrut 5" loading="lazy">
+        <div class="photo-label">Forever Cute 🎀</div>
+      </div>
+      <div class="photo" tabindex="0" role="button">
+        <img src="assets/images/ibrut-6.jpg" alt="Kenangan Ibrut 6" loading="lazy">
+        <div class="photo-label">For You, Ibrut 💕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SURAT -->
+  <section class="section" id="letterSection">
+    <h2 class="section-title">A Letter for You 💌</h2>
+    <p class="section-description">Ada ucapan kecil untuk kamu.</p>
+
+    <div class="letter">
+      <p>Dear Ibrut, 💗</p>
+
+      <p>
+        Selamat ulang tahun, yaa! Semoga di usia yang baru ini,
+        kamu selalu diberi kesehatan, kebahagiaan, dan hati yang
+        tenang. Semoga semua hal yang sedang kamu perjuangkan
+        perlahan menemukan jalannya.
+      </p>
+
+      <p>
+        Semoga kamu selalu dikelilingi orang-orang yang tulus,
+        punya banyak alasan untuk tersenyum, dan tidak lupa
+        menyayangi dirimu sendiri.
+      </p>
+
+      <p>With lots of love, ♡</p>
+
+      <button class="btn" id="secretButton" style="margin-top:22px">
+        Buka Pesan Rahasia 💝
+      </button>
+
+      <div class="secret" id="secretMessage">
+        <p><strong>One more thing, Ibrut... 💗</strong></p>
+        <p>
+          Kamu pantas mendapatkan hal-hal baik, bukan cuma hari ini,
+          tapi juga di hari-hari berikutnya. Tetap jadi dirimu sendiri,
+          tetap bersinar, dan jangan pernah merasa sendirian.
+        </p>
+        <p>Happy birthday, you deserve all the love! 🌷✨</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Made with ♡ just for Ibrut
+    <br>
+    Semoga harimu semanis kue ulang tahun ini 🎂
+  </footer>
+
+</div>
+</main>
+
+<!-- FOTO UKURAN BESAR -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ukuran besar">
+  <button class="lightbox-close" id="closeLightbox" aria-label="Tutup foto">×</button>
+  <img id="lightboxImage" src="" alt="Foto kenangan ukuran besar">
+</div>
+
+<script>
+const giftScreen = document.getElementById('giftScreen');
+const giftButton = document.getElementById('giftButton');
+const giftHint = document.getElementById('giftHint');
+
+const music = document.getElementById('birthdayMusic');
+const musicButton = document.getElementById('musicButton');
+const openButton = document.getElementById('openButton');
+
+const secretButton = document.getElementById('secretButton');
+const secretMessage = document.getElementById('secretMessage');
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const closeLightbox = document.getElementById('closeLightbox');
+
+/* Klik hadiah untuk masuk ke halaman ulang tahun */
+giftButton.addEventListener('click', () => {
+  if (giftScreen.classList.contains('opening')) return;
+
+  giftScreen.classList.add('opening');
+  giftHint.textContent = 'YAY! YOUR SURPRISE IS HERE 💗';
+
+  setTimeout(() => {
+    giftScreen.classList.add('opened');
+  }, 650);
+
+  setTimeout(() => {
+    giftScreen.style.display = 'none';
+  }, 1500);
+});
+
+/* Partikel hati dan bintang */
+const particlesContainer = document.getElementById('particles');
+const symbols = ['♡', '♥', '✦', '✨', '💕'];
+
+for (let i = 0; i < 24; i++) {
+  const particle = document.createElement('span');
+  particle.className = 'particle';
+  particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.fontSize = (12 + Math.random() * 20) + 'px';
+  particle.style.animationDuration = (9 + Math.random() * 13) + 's';
+  particle.style.animationDelay = (-Math.random() * 20) + 's';
+  particlesContainer.appendChild(particle);
+}
+
+/* Tombol kejutan */
+openButton.addEventListener('click', () => {
+  document.getElementById('cakeSection').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
+  openButton.textContent = 'For You, Ibrut 💗';
+
+  if (music.paused) {
+    music.play().then(() => {
+      musicButton.textContent = '♫ Matikan Musik';
+    }).catch(() => {
+      musicButton.textContent = '♫ Putar Musik';
+    });
+  }
+});
+
+/* Kontrol musik */
+musicButton.addEventListener('click', async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = '♫ Matikan Musik';
+    } catch (error) {
+      musicButton.textContent = 'Musik tidak tersedia';
     }
+  } else {
+    music.pause();
+    musicButton.textContent = '♫ Putar Musik';
+  }
+});
 
-    // Tombol kejutan
-    openButton.addEventListener('click', () => {
-      document.getElementById('cakeSection').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+/* Pesan rahasia */
+secretButton.addEventListener('click', () => {
+  const shown = secretMessage.classList.toggle('show');
 
-      openButton.textContent = 'For You, Ibrut 💗';
+  secretButton.textContent = shown
+    ? 'Tutup Pesan Rahasia 💗'
+    : 'Buka Pesan Rahasia 💝';
 
-      // Musik hanya diputar setelah interaksi pengguna
-      if (music.paused) {
-        music.play().then(() => {
-          musicButton.textContent = '♫ Matikan Musik';
-        }).catch(() => {
-          musicButton.textContent = '♫ Putar Musik';
-        });
-      }
+  if (shown) {
+    secretMessage.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
     });
+  }
+});
 
-    // Kontrol musik
-    musicButton.addEventListener('click', async () => {
-      if (music.paused) {
-        try {
-          await music.play();
-          musicButton.textContent = '♫ Matikan Musik';
-        } catch (error) {
-          musicButton.textContent = 'Musik tidak tersedia';
-        }
-      } else {
-        music.pause();
-        musicButton.textContent = '♫ Putar Musik';
-      }
-    });
+/* Galeri foto */
+function showPhoto(photo) {
+  const image = photo.querySelector('img');
+  if (!image) return;
 
-    // Pesan rahasia
-    secretButton.addEventListener('click', () => {
-      const isShown = secretMessage.classList.toggle('show');
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.alt;
+  lightbox.classList.add('show');
+  closeLightbox.focus();
+}
 
-      secretButton.textContent = isShown
-        ? 'Tutup Pesan Rahasia 💗'
-        : 'Buka Pesan Rahasia 💝';
+document.querySelectorAll('.photo').forEach((photo) => {
+  photo.addEventListener('click', () => showPhoto(photo));
 
-      if (isShown) {
-        secretMessage.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
-        });
-      }
-    });
-
-    // Galeri foto
-    function showPhoto(photo) {
-      const image = photo.querySelector('img');
-      if (!image) return;
-
-      lightboxImage.src = image.src;
-      lightboxImage.alt = image.alt;
-      lightbox.classList.add('show');
-      closeLightbox.focus();
+  photo.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      showPhoto(photo);
     }
+  });
+});
 
-    document.querySelectorAll('.photo').forEach((photo) => {
-      photo.addEventListener('click', () => showPhoto(photo));
+function hideLightbox() {
+  lightbox.classList.remove('show');
+  lightboxImage.src = '';
+}
 
-      photo.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          showPhoto(photo);
-        }
-      });
-    });
+closeLightbox.addEventListener('click', hideLightbox);
 
-    function hideLightbox() {
-      lightbox.classList.remove('show');
-      lightboxImage.src = '';
-    }
+lightbox.addEventListener('click', (event) => {
+  if (event.target === lightbox) hideLightbox();
+});
 
-    closeLightbox.addEventListener('click', hideLightbox);
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') hideLightbox();
+});
+</script>
 
-    lightbox.addEventListener('click', (event) => {
-      if (event.target === lightbox) {
-        hideLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        hideLightbox();
-      }
-    });
-  </script>
 </body>
 </html>
